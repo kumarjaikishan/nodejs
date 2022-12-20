@@ -22,6 +22,12 @@ app.get('/contact',(req,res)=>{
         msg:"from contact"
     })
 })
+app.get('/user',async (req,res)=>{
+    const query =await model.find();
+    res.json({
+        msg:query
+    })
+})
 app.post('/login',async (req,res)=>{
 const email = req.body.email;
 const query =await model.findOne({email});

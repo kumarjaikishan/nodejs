@@ -12,13 +12,28 @@ app.get('/',(req,res)=>{
         msg:"hi there jai here"
     })
 })
+app.get('/about',(req,res)=>{
+    res.json({
+        msg:"from about"
+    })
+})
+app.get('/contact',(req,res)=>{
+    res.json({
+        msg:"from contact"
+    })
+})
 app.post('/login',async (req,res)=>{
 const email = req.body.email;
 const query =await model.findOne({email});
-console.log(email)
-    res.json({
+if(query){
+    res.status(201).json({
         msg:query
     })
+}else{
+    res.status(400).json({
+        msg:"something wrong on query"
+    })
+}
 })
 app.listen(port,()=>{
     console.log(`server running at ${port}`)

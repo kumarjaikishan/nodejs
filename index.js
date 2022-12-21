@@ -18,13 +18,15 @@ app.get('/about',(req,res)=>{
     })
 })
 app.get('/contact',(req,res)=>{
+    res.set('Access-Control-Allow-Origin', '*');
     res.json({
         msg:"from contact"
     })
 })
 app.get('/user',async (req,res)=>{
     const query =await model.find();
-    res.json({
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(201).json({
         msg:query
     })
 })
@@ -32,10 +34,12 @@ app.post('/login',async (req,res)=>{
 const email = req.body.email;
 const query =await model.findOne({email});
 if(query){
+    res.set('Access-Control-Allow-Origin', '*');
     res.status(201).json({
         msg:query
     })
 }else{
+    res.set('Access-Control-Allow-Origin', '*');
     res.status(400).json({
         msg:"something wrong on query"
     })

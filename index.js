@@ -25,7 +25,8 @@ app.get('/contact',(req,res)=>{
 })
 app.get('/user',async (req,res)=>{
     const query =await model.find();
-    res.set('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "*");
     res.status(201).json({
         msg:query
     })
@@ -34,7 +35,8 @@ app.post('/login',async (req,res)=>{
 const email = req.body.email;
 const query =await model.findOne({email});
 if(query){
-    res.set('Access-Control-Allow-Origin', '*');
+     res.header('Access-Control-Allow-Origin', "*");
+     res.header('Access-Control-Allow-Headers', "*");
     res.status(201).json({
         msg:query
     })
